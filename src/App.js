@@ -15,6 +15,13 @@ const ModeButton = styled.button`
 
 function App() {
   const [mode, setMode] = useState(true);
+  const [infos, setInfos] = useState({
+    name: 'Phoenix Wright',
+    role: 'Defense Attorney',
+    contact: '0912334555466',
+    email: 'theaceattorney12#@gmail.com',
+    site: 'https://github.com/daphoenix12#',
+  });
 
   const handleMode = (e) => {
     e.preventDefault();
@@ -22,6 +29,21 @@ function App() {
       e.target.value === 'edit' ? (prevState = true) : (prevState = false)
     );
   };
+
+  const handleChange = (e) => {
+    setInfos({
+      ...infos, //save the current state of  all values
+      [e.target.name]: e.target.value, //utilizes the HTML name attribute of the node that is changed
+    });
+  };
+
+  const handleSubmit = (e) => {
+    setInfos({
+      ...infos,
+    });
+    e.preventDefault();
+  };
+
   return (
     <div className="App">
       <ModeButton onClick={handleMode} value="edit">
@@ -34,7 +56,11 @@ function App() {
       {mode ? (
         <div className="edit">
           You are in Edit Mode!
-          <GeneralInfoAlter />
+          <GeneralInfoAlter
+            infos={infos}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+          />
         </div>
       ) : (
         <div className="preview"> You're in Preview Mode</div>

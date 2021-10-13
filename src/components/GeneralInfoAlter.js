@@ -9,15 +9,52 @@ const StyledForm = styled.div`
   border: 2px black solid;
   padding: 20px;
 `;
-export default function GeneralInfoAlter() {
+export default function GeneralInfoAlter(props) {
   return (
     <div>
       General Information
-      <StyledForm>
-        <TextField id="outlined-basic" label="Name" variant="outlined" />
-        <TextField id="outlined-basic" label="Email" variant="outlined" />
-        <TextField id="outlined-basic" label="Contact" variant="outlined" />
-        <TextField id="outlined-basic" label="Site" variant="outlined" />
+      <StyledForm onSubmit={props.handleSubmit}>
+        <TextField
+          id="outlined-basic"
+          label="Name"
+          name="name"
+          variant="outlined"
+          value={props.infos.name}
+          onChange={props.handleChange}
+        />
+        <TextField
+          id="outlined-basic"
+          label="Role"
+          name="role"
+          variant="outlined"
+          value={props.infos.role}
+          onChange={props.handleChange}
+        />
+        <TextField
+          id="outlined-basic"
+          label="Email"
+          name="email"
+          variant="outlined"
+          value={props.infos.email}
+          onChange={props.handleChange}
+        />
+        <TextField
+          id="outlined-basic"
+          label="Contact"
+          name="contact"
+          variant="outlined"
+          value={props.infos.contact}
+          onChange={props.handleChange}
+        />
+        <TextField
+          id="outlined-basic"
+          label="Site"
+          name="site"
+          variant="outlined"
+          value={props.infos.site}
+          onChange={props.handleChange}
+        />
+        <input className="Submit-btn" type="submit" value="Submit" />
       </StyledForm>
     </div>
   );
