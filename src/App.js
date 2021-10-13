@@ -1,24 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import './App.css';
 import GeneralInfoAlter from './components/GeneralInfoAlter';
 
 const ModeButton = styled.button`
   background: green;
-  padding: 10px 30px 10px 30px;
+  min-width: 100px;
+  padding: 10px;
   color: white;
   font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
 `;
 
 function App() {
+  const [mode, setMode] = useState(true);
+
+  const handleMode = (e) => {
+    e.preventDefault();
+    setMode((prevState) =>
+      e.target.value === 'edit' ? (prevState = true) : (prevState = false)
+    );
+  };
   return (
     <div className="App">
-      <ModeButton>Edit Mode</ModeButton>
-      <ModeButton>Preview Mode</ModeButton>
-      <div className="edit">
-        <GeneralInfoAlter />
-      </div>
-      <div className="preview"></div>
+      <ModeButton onClick={handleMode} value="edit">
+        Edit
+      </ModeButton>
+      <ModeButton onClick={handleMode} value="preview">
+        Preview
+      </ModeButton>
+
+      {mode ? (
+        <div className="edit">
+          You are in Edit Mode!
+          <GeneralInfoAlter />
+        </div>
+      ) : (
+        <div className="preview"> You're in Preview Mode</div>
+      )}
     </div>
   );
 }
