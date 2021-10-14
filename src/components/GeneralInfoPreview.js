@@ -1,5 +1,5 @@
 import React from 'react';
 
-export default function GeneralInfoPrev(props) {
+export default function GeneralInfoPreview(props) {
   return <div>Hello</div>;
 }

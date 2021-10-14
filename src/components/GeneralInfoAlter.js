@@ -8,6 +8,8 @@ const StyledForm = styled.div`
   gap: 20px;
   border: 2px black solid;
   padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
 `;
 export default function GeneralInfoAlter(props) {
   return (

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import './App.css';
 import GeneralInfoAlter from './components/GeneralInfoAlter';
+import GeneralInfoPreview from './components/GeneralInfoPreview';
 
 const ModeButton = styled.button`
   background: green;
@@ -13,14 +14,22 @@ const ModeButton = styled.button`
   cursor: pointer;
 `;
 
+const Document = styled.div`
+  margin: 0 auto;
+  max-width: 545px;
+  min-height: 842px;
+  background: #fff;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+`;
+
 function App() {
   const [mode, setMode] = useState(true);
   const [infos, setInfos] = useState({
     name: 'Phoenix Wright',
     role: 'Defense Attorney',
     contact: '0912334555466',
-    email: 'theaceattorney12#@gmail.com',
-    site: 'https://github.com/daphoenix12#',
+    email: 'theaceattorney12@gmail.com',
+    site: 'https://github.com/daphoenix12',
   });
 
   const handleMode = (e) => {
@@ -55,7 +64,7 @@ function App() {
 
       {mode ? (
         <div className="edit">
-          You are in Edit Mode!
+          <h1> You are in Edit Mode!</h1>
           <GeneralInfoAlter
             infos={infos}
             handleChange={handleChange}
@@ -63,7 +72,12 @@ function App() {
           />
         </div>
       ) : (
-        <div className="preview"> You're in Preview Mode</div>
+        <div className="preview">
+          <h1>You're in Preview Mode</h1>
+          <Document>
+            <GeneralInfoPreview />
+          </Document>
+        </div>
       )}
     </div>
   );
