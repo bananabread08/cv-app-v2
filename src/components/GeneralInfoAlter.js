@@ -15,7 +15,7 @@ export default function GeneralInfoAlter(props) {
   return (
     <div>
       General Information
-      <StyledForm onSubmit={props.handleSubmit}>
+      <StyledForm>
         <TextField
           id="outlined-basic"
           label="Name"
@@ -56,7 +56,6 @@ export default function GeneralInfoAlter(props) {
           value={props.infos.site}
           onChange={props.handleChange}
         />
-        <input className="Submit-btn" type="submit" value="Submit" />
       </StyledForm>
     </div>
   );

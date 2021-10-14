@@ -46,12 +46,12 @@ function App() {
     });
   };
 
-  const handleSubmit = (e) => {
-    setInfos({
-      ...infos,
-    });
-    e.preventDefault();
-  };
+  // const handleSubmit = (e) => {
+  //   setInfos({
+  //     ...infos,
+  //   });
+  //   e.preventDefault();
+  // };
 
   return (
     <div className="App">
@@ -65,17 +65,13 @@ function App() {
       {mode ? (
         <div className="edit">
           <h1> You are in Edit Mode!</h1>
-          <GeneralInfoAlter
-            infos={infos}
-            handleChange={handleChange}
-            handleSubmit={handleSubmit}
-          />
+          <GeneralInfoAlter infos={infos} handleChange={handleChange} />
         </div>
       ) : (
         <div className="preview">
           <h1>You're in Preview Mode</h1>
           <Document>
-            <GeneralInfoPreview />
+            <GeneralInfoPreview infos={infos} />
           </Document>
         </div>
       )}
