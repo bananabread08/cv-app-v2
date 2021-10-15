@@ -12,6 +12,24 @@ const ModeButton = styled.button`
   font-size: 20px;
   font-weight: 700;
   cursor: pointer;
+  border-right: 1px solid white;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+
+  &:hover {
+    background: white;
+    border: 2px solid green;
+    color: green;
+  }
+`;
+
+const PreviewButton = styled(ModeButton)`
+  border-right: none;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-left: 1px solid white;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
 `;
 
 const Document = styled.div`
@@ -19,7 +37,7 @@ const Document = styled.div`
   max-width: 545px;
   min-height: 842px;
   background: #fff;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 5px 15px;
 `;
 
 function App() {
@@ -46,21 +64,14 @@ function App() {
     });
   };
 
-  // const handleSubmit = (e) => {
-  //   setInfos({
-  //     ...infos,
-  //   });
-  //   e.preventDefault();
-  // };
-
   return (
     <div className="App">
       <ModeButton onClick={handleMode} value="edit">
         Edit
       </ModeButton>
-      <ModeButton onClick={handleMode} value="preview">
+      <PreviewButton onClick={handleMode} value="preview">
         Preview
-      </ModeButton>
+      </PreviewButton>
 
       {mode ? (
         <div className="edit">
