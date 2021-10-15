@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import './App.css';
-import GeneralInfoAlter from './components/GeneralInfoAlter';
+import GeneralInfoEdit from './components/GeneralInfoEdit';
 import GeneralInfoPreview from './components/GeneralInfoPreview';
+import EducationEdit from './components/EducationEdit';
 
 const ModeButton = styled.button`
   background: green;
@@ -76,7 +77,12 @@ function App() {
       {mode ? (
         <div className="edit">
           <h1> You are in Edit Mode!</h1>
-          <GeneralInfoAlter infos={infos} handleChange={handleChange} />
+          <GeneralInfoEdit infos={infos} handleChange={handleChange} />
+          <div>
+            {' '}
+            Education
+            <EducationEdit />
+          </div>
         </div>
       ) : (
         <div className="preview">
