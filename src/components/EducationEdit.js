@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { TextField } from '@mui/material';
 import styled from 'styled-components';
 
@@ -12,19 +12,7 @@ const StyledForm = styled.div`
   margin: 0 auto;
 `;
 
-export default function ExperienceEdit() {
-  const [educationInfos, setEducationInfos] = useState({
-    school: 'School/University Name',
-    gradDate: 'Graduation Year, if applicable',
-    course: 'Course, if Tertiary Education',
-  });
-  const handleChange = (e) => {
-    setEducationInfos({
-      ...educationInfos, //save the current state of  all values
-      [e.target.name]: e.target.value, //utilizes the HTML name attribute of the node that is changed
-    });
-  };
-
+export default function EducationEdit(props) {
   return (
     <div>
       <StyledForm>
@@ -33,24 +21,24 @@ export default function ExperienceEdit() {
           label="School..."
           variant="outlined"
           name="school"
-          value={educationInfos.school}
-          onChange={handleChange}
+          value={props.educationInfos.school}
+          onChange={props.handleChange}
         />
         <TextField
           id="outlined-basic"
           label="Course..."
           variant="outlined"
           name="course"
-          value={educationInfos.course}
-          onChange={handleChange}
+          value={props.educationInfos.course}
+          onChange={props.handleChange}
         />
         <TextField
           id="outlined-basic"
           label="Graduation Year..."
           variant="outlined"
           name="gradDate"
-          value={educationInfos.gradDate}
-          onChange={handleChange}
+          value={props.educationInfos.gradDate}
+          onChange={props.handleChange}
         />
       </StyledForm>
     </div>

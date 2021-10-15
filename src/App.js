@@ -4,6 +4,7 @@ import './App.css';
 import GeneralInfoEdit from './components/GeneralInfoEdit';
 import GeneralInfoPreview from './components/GeneralInfoPreview';
 import EducationEdit from './components/EducationEdit';
+import EducationPreview from './components/EducationPreview';
 
 const ModeButton = styled.button`
   background: green;
@@ -51,6 +52,12 @@ function App() {
     site: 'https://github.com/daphoenix12',
   });
 
+  const [educationInfos, setEducationInfos] = useState({
+    school: 'School/University Name',
+    gradDate: 'Graduation Year, if applicable',
+    course: 'Course, if Tertiary Education',
+  });
+
   const handleMode = (e) => {
     e.preventDefault();
     setMode((prevState) =>
@@ -62,6 +69,11 @@ function App() {
     setInfos({
       ...infos, //save the current state of  all values
       [e.target.name]: e.target.value, //utilizes the HTML name attribute of the node that is changed
+    });
+
+    setEducationInfos({
+      ...educationInfos,
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -81,7 +93,10 @@ function App() {
           <div>
             {' '}
             Education
-            <EducationEdit />
+            <EducationEdit
+              educationInfos={educationInfos}
+              handleChange={handleChange}
+            />
           </div>
         </div>
       ) : (
@@ -89,6 +104,7 @@ function App() {
           <h1>You're in Preview Mode</h1>
           <Document>
             <GeneralInfoPreview infos={infos} />
+            <EducationPreview educationInfos={educationInfos} />
           </Document>
         </div>
       )}
