@@ -5,6 +5,7 @@ import GeneralInfoEdit from './components/GeneralInfoEdit';
 import GeneralInfoPreview from './components/GeneralInfoPreview';
 import EducationEdit from './components/EducationEdit';
 import EducationPreview from './components/EducationPreview';
+import uniqid from 'uniqid';
 
 const ModeButton = styled.button`
   background: green;
@@ -52,11 +53,9 @@ function App() {
     site: 'https://github.com/daphoenix12',
   });
 
-  const [educationInfos, setEducationInfos] = useState({
-    school: 'School/University Name',
-    gradDate: 'Graduation Year, if applicable',
-    course: 'Course, if Tertiary Education',
-  });
+  const [educationList, setEducationList] = useState([
+    <EducationEdit key={uniqid()} />,
+  ]);
 
   const handleMode = (e) => {
     e.preventDefault();
@@ -70,11 +69,13 @@ function App() {
       ...infos, //save the current state of  all values
       [e.target.name]: e.target.value, //utilizes the HTML name attribute of the node that is changed
     });
+  };
 
-    setEducationInfos({
-      ...educationInfos,
-      [e.target.name]: e.target.value,
-    });
+  const onAddBtnClick = (e) => {
+    e.preventDefault();
+    setEducationList((prevState) =>
+      prevState.concat(<EducationEdit key={uniqid()} />)
+    );
   };
 
   return (
@@ -91,12 +92,9 @@ function App() {
           <h1> You are in Edit Mode!</h1>
           <GeneralInfoEdit infos={infos} handleChange={handleChange} />
           <div>
-            {' '}
             Education
-            <EducationEdit
-              educationInfos={educationInfos}
-              handleChange={handleChange}
-            />
+            <button onClick={onAddBtnClick}> Add </button>
+            {educationList.map((element) => element)}
           </div>
         </div>
       ) : (
@@ -104,7 +102,6 @@ function App() {
           <h1>You're in Preview Mode</h1>
           <Document>
             <GeneralInfoPreview infos={infos} />
-            <EducationPreview educationInfos={educationInfos} />
           </Document>
         </div>
       )}
