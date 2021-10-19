@@ -12,7 +12,7 @@ const StyledForm = styled.div`
   margin: 0 auto;
 `;
 
-export default function EducationEdit(props) {
+export default function Education() {
   const [educationInfos, setEducationInfos] = useState({
     school: 'UP Diliman',
     course: 'Information Technology',
