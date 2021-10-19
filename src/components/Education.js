@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextField } from '@mui/material';
+import { TextField, Button } from '@mui/material';
 import styled from 'styled-components';
 
 const StyledForm = styled.div`
@@ -17,6 +17,7 @@ export default function Education() {
     school: 'UP Diliman',
     course: 'Information Technology',
     gradDate: '2016',
+    editing: false,
   });
 
   const handleChange = (e) => {
@@ -26,34 +27,57 @@ export default function Education() {
     });
   };
 
+  const handleSubmit = (e) => {
+    setEducationInfos({
+      ...educationInfos,
+      editing: !educationInfos.editing,
+    });
+    e.preventDefault();
+  };
   return (
-    <section>
-      <StyledForm>
-        <TextField
-          id="outlined-basic"
-          label="School..."
-          variant="outlined"
-          name="school"
-          value={educationInfos.school}
-          onChange={handleChange}
-        />
-        <TextField
-          id="outlined-basic"
-          label="Course..."
-          variant="outlined"
-          name="course"
-          value={educationInfos.course}
-          onChange={handleChange}
-        />
-        <TextField
-          id="outlined-basic"
-          label="Graduation Year..."
-          variant="outlined"
-          name="gradDate"
-          value={educationInfos.gradDate}
-          onChange={handleChange}
-        />
-      </StyledForm>
-    </section>
+    <div>
+      {educationInfos.editing ? (
+        <StyledForm onSubmit={handleSubmit}>
+          <TextField
+            id="outlined-basic"
+            label="School..."
+            variant="outlined"
+            name="school"
+            value={educationInfos.school}
+            onChange={handleChange}
+          />
+          <TextField
+            id="outlined-basic"
+            label="Course..."
+            variant="outlined"
+            name="course"
+            value={educationInfos.course}
+            onChange={handleChange}
+          />
+          <TextField
+            id="outlined-basic"
+            label="Graduation Year..."
+            variant="outlined"
+            name="gradDate"
+            value={educationInfos.gradDate}
+            onChange={handleChange}
+          />
+          <Button type="submit" variant="contained" onClick={handleSubmit}>
+            {' '}
+            Submit
+          </Button>
+        </StyledForm>
+      ) : (
+        <div>
+          <div>{educationInfos.school}</div>
+          <div>{educationInfos.course}</div>
+          <div>{educationInfos.gradDate}</div>
+          <Button variant="contained" onClick={handleSubmit}>
+            {' '}
+            Edit
+          </Button>
+        </div>
+      )}
+    </div>
   );
 }

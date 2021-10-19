@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import './App.css';
 import GeneralInfo from './components/GeneralInfo';
-//import Education from './components/Education';
-//import uniqid from 'uniqid';
+import Education from './components/Education';
+import uniqid from 'uniqid';
+import { Button } from '@mui/material';
 
 const ModeButton = styled.button`
   background: green;
@@ -33,9 +34,21 @@ const Document = styled.div`
 `;
 
 function App() {
+  const [schools, setSchools] = useState([<Education key={uniqid()} />]);
+  const addEducation = (e) => {
+    setSchools(schools.concat(<Education key={uniqid()} />));
+  };
   return (
     <div className="App">
       <GeneralInfo />
+      <div>
+        Education
+        <Button variant="contained" onClick={addEducation}>
+          {' '}
+          Add
+        </Button>
+        {schools.map((element) => element)}
+      </div>
     </div>
   );
 }

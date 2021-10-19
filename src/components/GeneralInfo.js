@@ -29,11 +29,11 @@ export default function GeneralInfo(props) {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
     setInfos({
       ...infos,
       editing: !infos.editing,
     });
+    e.preventDefault();
   };
   return (
     <div>
