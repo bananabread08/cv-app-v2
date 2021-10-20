@@ -34,31 +34,19 @@ import { Button } from '@mui/material';
 // `;
 
 function App() {
-  //const firstID = uniqid();
-  const [schools, setSchools] = useState([
-    // {
-    //   school: (
-    //     <Education key={uniqid()} id={firstID} deleteSchool={deleteSchool} />
-    //   ),
-    //   id: firstID,
-    // },
-  ]);
+  const [schools, setSchools] = useState([]);
+
   const addSchool = (e) => {
-    const newID = uniqid();
-    setSchools((prevState) =>
-      prevState.concat({
-        school: (
-          <Education key={uniqid()} id={newID} deleteSchool={deleteSchool} />
-        ),
-        id: newID,
-      })
-    );
     e.preventDefault();
+    setSchools(schools.concat(uniqid()));
   };
+
   function deleteSchool(e) {
-    const index = schools.findIndex((x) => x.id === e.target.id);
-    setSchools((prevState) => prevState.splice(index, 1));
+    e.preventDefault();
+    const array = schools.filter((id) => id !== e.target.id);
+    setSchools(array);
   }
+
   return (
     <div className="App">
       <GeneralInfo />
@@ -67,7 +55,9 @@ function App() {
         <Button variant="contained" onClick={addSchool}>
           Add
         </Button>
-        {schools.map((element) => element.school)}
+        {schools.map((id) => (
+          <Education key={id} id={id} deleteSchool={deleteSchool} />
+        ))}
       </div>
     </div>
   );
